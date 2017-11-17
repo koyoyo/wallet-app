@@ -1,18 +1,31 @@
 <template>
   <div class="monthly-chart">
-    <h1>October 2017</h1>
+    <h1 class="has-text-centered is-size-2">October 2017</h1>
     <div class="container">
-      <pie-chart :data="this.chartData" :options="this.options"></pie-chart>
-    </div>
-    <div class="container">
-      <ul v-for="item in items" v-bind:key="item.name">
-        <li class="item">
-          <div class="item-header">
-            50%<br />{{ item.name }}
+      <div class="columns">
+        <div class="column is-half-desktop">
+          <pie-chart :data="this.chartData" :options="this.options"></pie-chart>
+        </div>
+        <div class="column is-half-desktop">
+          <div class="columns is-multiline is-mobile">
+            <div class="column item is-half" v-for="item in items" v-bind:key="item.name">
+              <div class="">
+                <div class="item-header columns is-mobile is-gapless is-vcentered">
+                  <div class="column item-icon is-narrow">
+                    <b-icon icon="account" type="is-light"></b-icon>
+                  </div>
+                  <div class="column item-name">{{ item.name }}</div>
+                  <div class="column item-percent is-narrow">50%</div>
+                </div>
+                <div class="item-amount">{{ item.amount }}</div> 
+              </div>
+            </div>
           </div>
-          <div class="item-amount">{{ item.amount }}</div> 
-        </li>
-      </ul>
+        </div>
+      </div>
+      <div class="sticky-footer">
+        Total: 35,000
+      </div>
     </div>
   </div>
 </template>
@@ -82,16 +95,42 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
+@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/sass/utilities/derived-variables';
+
+h1 {
+  margin: 20px 0;
+}
+
 .monthly-chart .container {
   padding: 20px;
 }
 .item {
-  float: left;
-  margin-right: 5px;
+  padding: 0.25rem;
+  > div {background-color: $primary;}
+  
+  .item-header {
+    margin-bottom: 0;
+  }
+
+  .item-amount {
+    font-size: 1.6rem;
+    text-align: center;
+    letter-spacing: -1px;
+  }
+
+  .item-percent {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px !important;
+  }
+
+  .item-icon {
+    margin-right: 0.5rem;
+    padding: 5px !important;
+    background-color: $dark;
+  }
 }
 
-.item-amount {
-  text-align: center;
-}
 </style>
