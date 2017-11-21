@@ -40,6 +40,12 @@
           <b-input v-model.trim="note"></b-input>
         </b-field>
       </div>
+      <div class="field">
+        <b-field label="Date">
+          <b-datepicker placeholder="Click to select..." icon="calendar-today"
+            v-model.trim="date" :max-date="today" :date-formatter="dateFormat"></b-datepicker>
+        </b-field>
+      </div>
 
       <div class="field">
         <b-field>
@@ -54,23 +60,30 @@
 
 <script>
 import { mapActions } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'Form',
   data () {
+    let today = new Date()
     return {
+      today: today,
       amount: '',
       category: '',
-      note: ''
+      note: '',
+      date: today
     }
   },
   methods: {
     ...mapActions([
       'insertRecord'
     ]),
-    submit: function (event) {
+    dateFormat: function (thisDate) {
+      return moment(thisDate).format('DD/MM/YYYY')
+    },
+    submit (event) {
       this.insertRecord({
-        date: '171019',
+        date: moment(this.date).format('YYMMDD'),
         data: {
           'amount': this.amount,
           'category': this.category,
