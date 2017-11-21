@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Form',
   data () {
@@ -63,10 +65,18 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'insertRecord'
+    ]),
     submit: function (event) {
-      console.log(this.amount)
-      console.log(this.category)
-      console.log(this.note)
+      this.insertRecord({
+        date: '171019',
+        data: {
+          'amount': this.amount,
+          'category': this.category,
+          'note': this.note
+        }
+      })
     }
   }
 }
