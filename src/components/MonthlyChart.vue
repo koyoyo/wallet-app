@@ -8,7 +8,7 @@
         </div>
         <div class="column is-half-desktop">
           <div class="columns is-multiline is-mobile">
-            <div class="column item is-half" v-for="item in items" v-bind:key="item.name">
+            <div class="column item is-half" v-for="item in monthlySummaryByCategory" v-bind:key="item.name">
               <div class="">
                 <div class="item-header columns is-mobile is-gapless is-vcentered">
                   <div class="column item-icon is-narrow">
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import PieChart from './PieChart'
 
 export default {
@@ -40,34 +42,19 @@ export default {
   },
   data () {
     return {
-      items: [
-        {
-          'name': 'Food',
-          'amount': 1000
-        },
-        {
-          'name': 'Drink',
-          'amount': 10000
-        },
-        {
-          'name': 'Transport',
-          'amount': 30000
-        },
-        {
-          'name': 'Other',
-          'amount': 5000
-        }
-      ],
       options: {
         legend: null
       }
     }
   },
   computed: {
+    ...mapGetters([
+      'monthlySummaryByCategory'
+    ]),
     chartData: function () {
       let labels = []
       let amounts = []
-      this.items.forEach(function (item) {
+      this.monthlySummaryByCategory.forEach(function (item) {
         labels.push(item.name)
         amounts.push(item.amount)
       })
