@@ -10,28 +10,11 @@
 
       <div class="field select-category">
         <b-field>
-          <b-radio-button v-model="category"
-              native-value="Food">
-              <b-icon icon="close"></b-icon>
-              <span>Food</span>
-          </b-radio-button>
-
-          <b-radio-button v-model="category"
-              native-value="Drink">
-              <b-icon icon="check"></b-icon>
-              <span>Drink</span>
-          </b-radio-button>
-
-          <b-radio-button v-model="category"
-              native-value="Transport">
-              <b-icon icon="check"></b-icon>
-              <span>Transport</span>
-          </b-radio-button>
-
-          <b-radio-button v-model="category"
-              native-value="Other">
-              <b-icon icon="check"></b-icon>
-              <span>Other</span>
+          <b-radio-button v-model="category" v-for="categoryChoice in categories"
+              :native-value="categoryChoice.code"
+              :key="categoryChoice.code">
+            <b-icon :icon="categoryChoice.icon"></b-icon>
+            <span>{{ categoryChoice.name }}</span>
           </b-radio-button>
         </b-field>
       </div>
@@ -59,7 +42,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import moment from 'moment'
 
 export default {
@@ -73,6 +56,11 @@ export default {
       note: '',
       date: today
     }
+  },
+  computed: {
+    ...mapState([
+      'categories'
+    ])
   },
   methods: {
     ...mapActions([

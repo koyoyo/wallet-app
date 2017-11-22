@@ -12,7 +12,7 @@
               <div class="">
                 <div class="item-header columns is-mobile is-gapless is-vcentered">
                   <div class="column item-icon is-narrow">
-                    <b-icon icon="account" type="is-light"></b-icon>
+                    <b-icon :icon="item.icon" type="is-light"></b-icon>
                   </div>
                   <div class="column item-name">{{ item.name }}</div>
                   <div class="column item-percent is-narrow">50%</div>
