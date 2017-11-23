@@ -34,3 +34,19 @@ export const monthlySummaryByCategory = (state, getters) => {
     return category.amount > 0
   })
 }
+
+export const getCategoryFromCode = (state) => (code) => {
+  return state.categories.find(category => {
+    return category.code === code
+  })
+}
+
+export const getCategoryIconFromCode = (state, getters) => (code) => {
+  let category = getters.getCategoryFromCode(code)
+  return category ? category.icon : ''
+}
+
+export const getCategoryNameFromCode = (state, getters) => (code) => {
+  let category = getters.getCategoryFromCode(code)
+  return category ? category.name : ''
+}

@@ -13,6 +13,11 @@ Vue.config.productionTip = false
 // Bulma
 Vue.use(Buefy)
 
+// Global Filters
+Vue.filter('numberWithCommas', (value) => {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

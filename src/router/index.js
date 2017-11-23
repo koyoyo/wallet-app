@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import MonthlyChart from '@/components/MonthlyChart'
 import Form from '@/components/Form'
+import Detail from '@/components/Detail'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/form',
       name: 'Form',
       component: Form
+    },
+    {
+      path: '/detail',
+      name: 'Detail',
+      component: Detail
     }
   ]
 })
