@@ -8,6 +8,9 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
+  user: {
+    isAnonymous: true
+  },
   records: {
     '171120': [],
     '171119': [

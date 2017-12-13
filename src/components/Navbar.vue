@@ -12,7 +12,14 @@
           <span></span>
         </div>
       </div>
-      <div class="navbar-menu" v-bind:class="navbarClassObject">
+
+      <div class="navbar-menu" v-bind:class="navbarClassObject" v-show="this.user.isAnonymous">
+        <div class="navbar-end">
+          <router-link :to="{ name: 'AuthLogin'}" class="navbar-item">Login</router-link>
+        </div>
+      </div>
+
+      <div class="navbar-menu" v-bind:class="navbarClassObject" v-show="!this.user.isAnonymous">
         <div class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
@@ -39,6 +46,10 @@
               <a class="navbar-item">
                 Add
               </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" @click.prevent="logout">
+                Logout
+              </a>
             </div>
           </div>
         </div>
@@ -48,6 +59,9 @@
 </template>
 
 <script>
+import Firebase from 'firebase'
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'Navbar',
   data () {
@@ -56,6 +70,9 @@ export default {
     }
   },
   computed: {
+    ...mapState([
+      'user'
+    ]),
     navbarClassObject () {
       return {
         'is-active': this.isActive
@@ -63,6 +80,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'updateUser'
+    ]),
+    logout () {
+      Firebase.auth().signOut()
+      this.updateUser()
+      this.$router.push({name: 'AuthLogin'})
+    },
     toggleNavbarIsActive () {
       this.isActive = !this.isActive
     }

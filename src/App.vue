@@ -7,6 +7,7 @@
 
 <script>
 import Firebase from 'firebase'
+import { mapActions } from 'vuex'
 
 import Navbar from './components/Navbar'
 
@@ -17,11 +18,17 @@ export default {
   created () {
     Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user)
+        // NOTE: Update in this VS Update in firebaseui signInSuccess
+        this.updateUser(user)
       } else {
-        this.$router.push('/auth/')
+        this.$router.push({name: 'AuthLogin'})
       }
     })
+  },
+  methods: {
+    ...mapActions([
+      'updateUser'
+    ])
   },
   name: 'app'
 }

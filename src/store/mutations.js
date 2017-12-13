@@ -11,5 +11,14 @@ export default {
         ]
       }
     }
+  },
+  [types.UPDATE_USER] (state, payload) {
+    if (payload) {
+      state.user = payload
+    } else {
+      state.user = {
+        isAnonymous: true
+      }
+    }
   }
 }
