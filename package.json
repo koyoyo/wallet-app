@@ -16,6 +16,8 @@
   "dependencies": {
     "buefy": "^0.6.1",
     "chart.js": "^2.7.1",
+    "firebase": "^4.6.2",
+    "firebaseui": "^2.5.1",
     "moment": "^2.19.2",
     "vue": "^2.5.2",
     "vue-chartjs": "^3.0.2",

@@ -6,11 +6,22 @@
 </template>
 
 <script>
+import Firebase from 'firebase'
+
 import Navbar from './components/Navbar'
 
 export default {
   components: {
     Navbar
+  },
+  created () {
+    Firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user)
+      } else {
+        this.$router.push('/auth/')
+      }
+    })
   },
   name: 'app'
 }
