@@ -19,22 +19,26 @@ export default new Router({
     {
       path: '/auth',
       name: 'AuthLogin',
-      component: AuthLogin
+      component: AuthLogin,
+      meta: { redirectAuthenticated: true }
     },
     {
       path: '/chart',
       name: 'MonthlyChart',
-      component: MonthlyChart
+      component: MonthlyChart,
+      meta: { requiresAuth: true }
     },
     {
       path: '/form',
       name: 'Form',
-      component: Form
+      component: Form,
+      meta: { requiresAuth: true }
     },
     {
       path: '/detail',
       name: 'Detail',
-      component: Detail
+      component: Detail,
+      meta: { requiresAuth: true }
     }
   ]
 })
