@@ -4,7 +4,7 @@ export const allMonthlySummaryByCategoryAll = state => {
     return Object.assign({}, category, {amount: 0})
   })
 
-  Object.keys(state.records).forEach(day => {
+  Object.keys(state.records).map(day => {
     let yearMonth = day.slice(0, 4)
     let monthSummary
     if (!summary.hasOwnProperty(yearMonth)) {
@@ -12,7 +12,7 @@ export const allMonthlySummaryByCategoryAll = state => {
     }
     monthSummary = summary[yearMonth]
 
-    state.records[day].forEach(record => {
+    Object.values(state.records[day]).map(record => {
       let category = monthSummary.find(summaryCategory => {
         return summaryCategory.code === record.category
       })
@@ -26,7 +26,7 @@ export const allMonthlySummaryByCategoryAll = state => {
 
 export const monthlySummaryByCategoryWithZero = (state, getters) => {
   // return getters.allMonthlySummaryByCategoryAll[state.selectedMonth]
-  return getters.allMonthlySummaryByCategoryAll['1711']
+  return getters.allMonthlySummaryByCategoryAll['1712'] || []
 }
 
 export const monthlySummaryByCategory = (state, getters) => {

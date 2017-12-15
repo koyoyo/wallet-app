@@ -12,38 +12,7 @@ const state = {
     isAnonymous: true
   },
   baseDB: '',
-  records: {
-    '171120': [],
-    '171119': [
-      {
-        'amount': 200,
-        'category': 'food',
-        'note': 'Custard'
-      },
-      {
-        'amount': 1000,
-        'category': 'drink',
-        'note': ''
-      },
-      {
-        'amount': 50,
-        'category': 'transport',
-        'note': ''
-      }
-    ],
-    '171118': [
-      {
-        'amount': 300,
-        'category': 'food',
-        'note': ''
-      },
-      {
-        'amount': 50,
-        'category': 'transport',
-        'note': ''
-      }
-    ]
-  },
+  records: {},
   categories: [
     {
       name: 'Food',

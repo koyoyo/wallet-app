@@ -1,7 +1,7 @@
 <template>
   <tbody>
-    <template v-if="dayRecords.length">
-      <record-detail v-for="record in dayRecords" :record="record" :can-edit="canEdit">
+    <template v-if="Object.keys(dayRecords).length">
+      <record-detail v-for="(record, key) in dayRecords" :record="record" :can-edit="canEdit" :key="key">
       </record-detail>
     </template>
     <template v-else>
@@ -51,4 +51,3 @@ export default {
 <style lang="scss" scoped>
 
 </style>
-

@@ -3,9 +3,9 @@
     <div class="table-wrapper">
       <table class="table is-fullwidth">
         <!-- TODO: Split header/body -->
-        <template v-for="(dayRecords, day) in records">
-          <daily-detail-header :day="day" :key="day"></daily-detail-header>
-          <daily-detail :day-records="dayRecords" :key="day"></daily-detail>
+        <template v-for="day in recordsReverse">
+          <daily-detail-header :day="day.day" :key="day.day"></daily-detail-header>
+          <daily-detail :day-records="day.records" :key="day.day"></daily-detail>
         </template>
       </table>
     </div>
@@ -27,7 +27,15 @@ export default {
   computed: {
     ...mapState([
       'records'
-    ])
+    ]),
+    recordsReverse () {
+      return Object.keys(this.records).reverse().map(key => {
+        return {
+          day: key,
+          records: this.records[key]
+        }
+      })
+    }
   }
 }
 </script>

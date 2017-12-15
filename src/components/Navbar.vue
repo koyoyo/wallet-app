@@ -27,15 +27,11 @@
             </a>
 
             <div class="navbar-dropdown is-right">
-              <a class="navbar-item">
-                Today
-              </a>
+              <router-link :to="{ name: 'Detail'}" class="navbar-item">This Month</router-link>
               <a class="navbar-item">
                 Calendar
               </a>
-              <a class="navbar-item">
-                Monthly Chart
-              </a>
+              <router-link :to="{ name: 'MonthlyChart'}" class="navbar-item">Monthly Chart</router-link>
               <a class="navbar-item">
                 Summary by day
               </a>
