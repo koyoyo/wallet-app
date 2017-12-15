@@ -43,9 +43,7 @@
                 Summary by month
               </a>
               <hr class="navbar-divider">
-              <a class="navbar-item">
-                Add
-              </a>
+              <router-link :to="{ name: 'Form'}" class="navbar-item">Add</router-link>
               <hr class="navbar-divider">
               <a class="navbar-item" @click.prevent="logout">
                 Logout

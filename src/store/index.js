@@ -11,6 +11,7 @@ const state = {
   user: {
     isAnonymous: true
   },
+  baseDB: '',
   records: {
     '171120': [],
     '171119': [

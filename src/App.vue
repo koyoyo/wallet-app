@@ -7,6 +7,7 @@
 
 <script>
 import Firebase from 'firebase'
+import moment from 'moment'
 import { mapActions, mapState } from 'vuex'
 
 import Navbar from './components/Navbar'
@@ -51,6 +52,10 @@ export default {
       if (user) {
         // NOTE: Update in this VS Update in firebaseui signInSuccess
         this.updateUser(user)
+
+        // Load current month data
+        const thisMonth = moment(this.date).format('YYMM')
+        this.loadMontlyRecord(thisMonth)
       } else {
         this.$router.push({name: 'AuthLogin'})
       }
@@ -58,7 +63,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'updateUser'
+      'updateUser',
+      'loadMontlyRecord'
     ])
   },
   name: 'app'

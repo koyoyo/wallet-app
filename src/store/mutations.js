@@ -1,3 +1,5 @@
+import Firebase from 'firebase'
+
 import * as types from './mutation-types'
 
 export default {
@@ -18,6 +20,19 @@ export default {
     } else {
       state.user = {
         isAnonymous: true
+      }
+    }
+  },
+  [types.UPDATE_BASE_FIREBASE_PATH] (state, payload) {
+    state.baseDB = Firebase.database().ref(`users/${payload.uid}`)
+  },
+  [types.LOAD_MONTLY_RECORD] (state, payload) {
+    for (let [key, val] of Object.entries(payload)) {
+      if (state.records[key] === undefined) {
+        state.records[key] = val
+      } else {
+        // NOTE: More thought thoroughly about this
+        state.records[key] = Object.assign(state.records[key], val)
       }
     }
   }
